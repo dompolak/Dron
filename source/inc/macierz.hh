@@ -6,6 +6,7 @@
 template <class T, int size>
 class macierz
 {
+protected:
     Wektor<T, size> tab[size];
 public:
     macierz();
