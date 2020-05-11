@@ -18,7 +18,7 @@ public:
     {
         prostopadloscian::rysuj;
     }
-    void przesun(double odleglocs);
+    void przesun();
 };
 
 
