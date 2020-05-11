@@ -1,4 +1,3 @@
- 
 #include "wektor.cpp"
 #include "macierz.cpp"
 

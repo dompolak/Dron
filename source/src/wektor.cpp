@@ -146,3 +146,9 @@ double Wektor<T, size>::dlugosc() const
     return sqrt((*this) * (*this));
 }
 
+template<class T, int size>
+const drawNS::Point3D Wektor<T,size>::punkt() const
+{
+    drawNS::Point3D punkt(tab[0],tab[1],tab[2]);
+    return punkt;
+}

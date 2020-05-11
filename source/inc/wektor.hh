@@ -1,13 +1,14 @@
 #ifndef _WEKTOR_HH
 #define _WEKTOR_HH
 
-#include<iostream>
-#include<string>
-#include<cmath>
-#include<cstring>
-#include<fstream>
-#include<cfloat>
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <cstring>
+#include <fstream>
+#include <cfloat>
 #include <iomanip>
+#include "Draw3D_api_interface.hh"
 
 template <class T, int size>
 class Wektor
@@ -26,6 +27,7 @@ public:
     bool operator == (const Wektor<T, size> &) const;
     bool operator != (const Wektor<T, size> &) const; 
     double dlugosc() const;
+    const drawNS::Point3D punkt() const;
 };
 
 template<class T, int size>

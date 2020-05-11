@@ -11,6 +11,7 @@ protected:
 public:
     macierz();
     macierz(Wektor<T, size> tab[]);
+    virtual ~macierz() {};
     const Wektor<T, size> &operator[] (unsigned int) const;
     Wektor<T, size> &operator [] (unsigned int);
     macierz<T, size> operator + (const macierz<T, size> &) const;
@@ -19,8 +20,10 @@ public:
     macierz<T, size> operator * (const T &) const;
     Wektor<T, size> operator * (const Wektor<T, size> &) const;
     T wyznacznik() const;
-    T wyznacznik1() const;
+    bool operator == (const macierz<T, size> &) const;
+    bool operator != (const macierz<T, size> &) const;
     macierz<T, size> transponuj() const;
+    void jednostkowa();
     void transponuj();
 };
 

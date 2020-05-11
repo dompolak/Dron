@@ -1,14 +1,12 @@
-#include <iostream>
-#include "bryla.hh"
+#include "prostopadloscian.hh"
 
-using std::vector;
-using drawNS::Point3D;
-using drawNS::APIGnuPlot3D;
-using std::cout;
-using std::endl;
+void wait4key() {                                                                                                          
+  do {                                                                                                                     
+    std::cout << "\n Press a key to continue..." << std::endl;                                                             
+  } while(std::cin.get() != '\n');                                                                                         
+}  
 
 int main()
 {
-    std::shared_ptr<drawNS::Draw3DAPI> api(new APIGnuPlot3D(-5,5,-5,5,-5,5,1000));
-    
+
 }

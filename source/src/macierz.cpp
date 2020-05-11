@@ -182,3 +182,31 @@ T macierz<T, size>::wyznacznik() const
 
 }
 
+template<class T,int size>
+void macierz<T, size>::jednostkowa()
+{
+    for(int i(0); i < size; i++)
+        for(int j(0); j < size; j++)
+        {
+            if(i == j)
+            {tab[i][j] = 1; }
+        }
+}
+
+template<class T, int size>
+bool macierz<T, size>::operator == (const macierz<T, size> & arg1) const
+{
+    for(int i(0); i < size; i++)
+    {
+        if(tab[i] != arg1[i])
+        {return false; }
+    }
+
+    return true;
+}
+
+template<class T, int size>
+bool macierz<T, size>::operator != (const macierz<T, size> & arg1) const
+{
+    return !(*this == arg1);
+}
