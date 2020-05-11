@@ -14,7 +14,12 @@ public:
     : prostopadloscian(tablica, M, S, wsk, K)
     , id_drone(0) {}
     ~drone();
-    void rysuj();
+    void rysuj()
+    {
+        prostopadloscian::rysuj;
+    }
+    void przesun(double odleglocs);
 };
+
 
 #endif
