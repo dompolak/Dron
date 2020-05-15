@@ -5,16 +5,40 @@
 using smacierz = macierz<double, 3>;
 
 //wokol jakiej osi ma sie obrocic obiekt
-//enum wymiar{x, y, z};
+enum wymiar{os_x, os_y, os_z};
 
 class macierz_ob :public macierz<double, 3>
 {
 public:
-    macierz_ob() 
-    {
-        tab[0][0] = 1;
-        tab[1][1] = 1;
-        tab[2][2] = 1;
+    macierz_ob(const wymiar & wokol_os, const double & kat) 
+    {   
+        double kat_rad = M_PI * kat / 180;
+        switch(wokol_os)
+        {
+            case os_x:
+            tab[0][0] = 1;
+            tab[1][1] = cos(kat_rad); 
+            tab[1][2] = (-1) * sin(kat_rad);
+            tab[2][1] = sin(kat_rad);
+            tab[2][2] = cos(kat_rad); 
+            break;
+
+            case os_y:
+            tab[1][1] = 1;
+            tab[0][0] = cos(kat_rad); 
+            tab[0][2] = sin(kat_rad);
+            tab[2][0] = (-1) * sin(kat_rad);
+            tab[2][2] = cos(kat_rad); 
+            break;
+            
+            case os_z:
+            tab[2][2] = 1;
+            tab[0][0] = cos(kat_rad); 
+            tab[0][1] = (-1) * sin(kat_rad);
+            tab[1][0] = sin(kat_rad);
+            tab[1][1] = cos(kat_rad);
+            break;
+        }
     }
     macierz_ob(const smacierz & M) : smacierz(M) 
     {
