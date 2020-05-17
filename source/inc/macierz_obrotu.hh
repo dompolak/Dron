@@ -10,7 +10,7 @@ enum wymiar{os_x, os_y, os_z};
 class macierz_ob :public macierz<double, 3>
 {
 public:
-    macierz_ob(const wymiar & wokol_os, const double & kat) 
+    macierz_ob(const wymiar & wokol_os, const double kat) //kat stopnie
     {   
         double kat_rad = M_PI * kat / 180;
         switch(wokol_os)

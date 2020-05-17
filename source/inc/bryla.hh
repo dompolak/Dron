@@ -4,6 +4,7 @@
 #include "macierz_obrotu.hh"
 #include "Dr3D_gnuplot_api.hh"
 #include "interfejs_rysowania.hh"
+#define DZIELNIK 100
 
 using std::vector;
 using drawNS::Point3D;
@@ -16,46 +17,41 @@ protected:
 
     macierz_ob orientacja;
     wektor3D srodek_bryly;
-    double id; 
-
+    std::string kolor;
 
 public:
-    bryla( drawNS::Draw3DAPI * wsk, std::string K, macierz_ob M, wektor3D S) 
-    : interfejs_rysowania(wsk, K) 
+    bryla(std::shared_ptr<drawNS::Draw3DAPI> wsk, std::string K, macierz_ob M, wektor3D S) 
+    : interfejs_rysowania(wsk)
     , orientacja(M)
     , srodek_bryly(S)
-    , id(0.0) {}
+    , kolor(K) {}
 
     virtual ~bryla() {};
 
     /*void set_orientacja(const macierz_ob & M)   { this->orientacja = M; }
     macierz_ob get_orientacja() {return orientacja; }
-
+    */
     void set_srodek(const wektor3D& W)  { this->srodek_bryly = W; }
     wektor3D get_srodek() {return srodek_bryly; }
-    */
+    
     double getID() const 
     {return id; }
 
     virtual void rysuj() = 0;
-    virtual void przesun(wektor3D przesuniecie)// narazie przesuniecie o wektor
+
+    virtual void przesun(const wektor3D &we)
     {
-        api->erase_shape(id);
-        srodek_bryly = srodek_bryly + przesuniecie;
+        srodek_bryly = srodek_bryly + we;
+        usun_obiekt();
         rysuj();
     }
 
-    virtual void rotacja(double kat)
+    virtual void obroc(const double &kat)
     {
-        api->erase_shape(id);
-        double kat_rad = M_PI * kat / 180;
-        //macierz obrotu wokol osi z 
-        macierz_ob tmp(orientacja);
-        tmp[0][0] = cos(kat_rad); 
-        tmp[0][1] = (-1) * sin(kat_rad);
-        tmp[1][0] = sin(kat_rad);
-        tmp[1][1] = cos(kat_rad);
+        
+        macierz_ob tmp(os_z, kat);
         orientacja = macierz_ob(tmp * orientacja);
+        usun_obiekt();
         rysuj();
     }
 
