@@ -39,8 +39,7 @@ for(int i(0); i <= 8; i++)
       plik_dron >> sr_dron;
     }
 }
-dron tmp();
-tmp.rysuj();
+
 tafla T(api);
 podloze P(api);
 P.rysuj();
@@ -63,7 +62,7 @@ while(wybor != 'k')
     case 'o': // zmiana orientacji
     cout << "Podaj kat:" << endl;
     cin >> kat;
-    tmp.obroc(kat);
+    //tmp.obroc(kat);
     break;
 
     case 'k':

@@ -17,6 +17,7 @@ class Wektor
 public:
     Wektor() {for (T &TAB : tab) TAB = 0;}
     Wektor(T TAB[]);
+    Wektor(double x, double y, double z) : tab{x,y,z} {}
     const T &operator [] (unsigned int )const;
     T &operator [] (unsigned int );
     Wektor<T, size> operator + (const Wektor<T, size> &) const;
