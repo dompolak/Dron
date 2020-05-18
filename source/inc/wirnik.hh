@@ -37,7 +37,7 @@ public:
 
     void przesun(const wektor3D &we)
     {
-        point = point +we;
+        point = point + we;
         srodek_bryly = srodek_bryly + we;
         for(int i(0); i < 12; i++)
         {
