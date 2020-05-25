@@ -36,8 +36,8 @@ public:
         Wektor3D tmp[12];
         for(int i(0); i < 12; i++)
         { 
-            tmp[i] = we + orientacja *(ob * (m_pom * wierzcholki[i]));
-            //tmp[i] = we + ob* (srodek_bryly + orientacja * wierzcholki[i]);
+            //tmp[i] = we + ob * (orientacja * (m_pom * wierzcholki[i]));
+            tmp[i] = we + orientacja * (srodek_bryly + m_pom * wierzcholki[i]);
         }
 
         obiekt_id = gnuplot->draw_polyhedron(vector<vector<Point3D>>
