@@ -3,47 +3,69 @@
 
 #include "bryla.hh"
 
-using std::vector;
-using Wektor3D = Wektor<double,3>;
-
+/*!
+*  \brief klasa reprezenujaca prostopadloscian
+*/
 class prostopadloscian : public bryla
 {
+protected:
+    /*!
+    *  \brief tablica 8 punktow reprezentujaca wierzcholki
+    */
     Wektor3D wierzcholki[8];
-
 public:
-    prostopadloscian(Wektor3D tablica[], macierz_ob M, Wektor3D S, std::shared_ptr<drawNS::Draw3DAPI> wsk, std::string K)
-    : bryla(wsk, K, M ,S) 
+    /*!
+    *  \brief konstruktor
+    *  \param wsk - lacze do gnuplota
+    *  \param K - zmienna przechowujaca kolor bryly
+    *  \param M - macierz stanowiaca orientacje bryly
+    *  \param S - punkt srodka bryly
+    *  \param tablica - tablica 8 wektorow reprezentujaca wierzcholki 
+    */
+    prostopadloscian(shared_ptr<Draw3DAPI> wsk, string K, macierz_ob M, Wektor3D S, Wektor3D tablica[])
+    : bryla(wsk, K, M, S)
     {
         for(int i(0); i < 8; i++)
         { wierzcholki[i] = tablica[i]; }
     }
 
+    /*!
+    *  \brief destruktor
+    */
     virtual ~prostopadloscian() {}
+
+    /*!
+    *  \brief metoda rysujaca prostopadloscian
+    */
     void rysuj()
     {
-    Wektor<double,3 > tmp[8];
-    for(int i(0); i < 8; i++)
-    { tmp[i] = srodek_bryly + orientacja * wierzcholki[i]; }
+        Wektor3D tmp[8];
+        for(int i(0); i < 8; i++)
+        { tmp[i] = srodek_bryly + orientacja * wierzcholki[i]; }
 
-    id = api->draw_polyhedron(vector<vector<drawNS::Point3D>>
-    {{tmp[0].punkt(),tmp[1].punkt(),tmp[2].punkt(),tmp[3].punkt()
-    },{
-    tmp[4].punkt(),tmp[5].punkt(),tmp[6].punkt(),tmp[7].punkt()}
-    },kolor);
-
-    api->redraw();
+        obiekt_id = gnuplot->draw_polyhedron(vector<vector<Point3D>>
+        {{
+            tmp[0].punkt(), tmp[1].punkt(), tmp[2].punkt(), tmp[3].punkt()
+        },{ 
+            tmp[4].punkt(),tmp[5].punkt(),tmp[6].punkt(),tmp[7].punkt()
+        }}, kolor);
     }
 
-    void przesun(const Wektor3D &we)
+    /*!
+    *  \brief metoda przesuwajca prostopadloscian o podany wektor
+    *  \param we - wektor o jaki ma sie przesunac bryla
+    */
+    void przemiesc(const Wektor3D &we)
     {
         srodek_bryly = srodek_bryly + we;
+
         for(int i(0); i < 8; i++)
-        {
-            wierzcholki[i] = wierzcholki[i] + we;
-            usun_obiekt();
-            rysuj();
-        }
+        { wierzcholki[i] = wierzcholki[i] + we; }
+
+        usun_obiekt();
+        rysuj();
+
+
     }
 };
-
 #endif

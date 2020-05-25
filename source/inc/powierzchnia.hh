@@ -1,24 +1,27 @@
 #ifndef _POWIERZCHNIA_HH
 #define _POWIERZCHNIA_HH
 
-#include "interfejs_rysowania.hh"
-#include "wektor.hh"
-#define MAX 10
+#include "inter_rysowania.hh"
 
-using std::vector;
-using wektor3D = Wektor<double,3>;
-using drawNS::Point3D;
-using drawNS::APIGnuPlot3D;
-
+/*!
+*  \brief klasa reprezentujaca powierzhcnia
+*/
 class powierzchnia : public interfejs_rysowania
 {
 
 public:
-    powierzchnia(std::shared_ptr<drawNS::Draw3DAPI> wsk) :
-    interfejs_rysowania(wsk){}
-
+    /*!
+    *  \brief konstruktor
+    *  \param wsk - laczego do gnuplota
+    *  \param K - zmienna przechowujaca kolor bryly
+    */
+    powierzchnia(shared_ptr<Draw3DAPI> wsk, string K) 
+    : interfejs_rysowania(wsk,K) {}
+    /*!
+    *  \brief destruktor
+    */
     virtual ~powierzchnia() {}
 
-};
 
+};
 #endif

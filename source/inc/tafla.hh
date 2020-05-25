@@ -3,23 +3,67 @@
 
 #include "powierzchnia.hh"
 
-class tafla :public powierzchnia
+/*!
+*  \brief klasa reprezentujaca tafle
+*/
+class tafla : public powierzchnia
 {
-    std::string kolor = "blue";
-public:
-    tafla(std::shared_ptr<drawNS::Draw3DAPI> wsk) : 
-    powierzchnia(wsk) {}
 
+public: 
+    /*!
+    *  \brief konstruktor
+    *  \param wsk - lacze do gnuplota
+    */
+    tafla(shared_ptr<Draw3DAPI> wsk)
+    : powierzchnia(wsk ,"blue") {}
+    /*!
+    *  \brief metoda rysujaca tafle 
+    */
     void rysuj()
     {
-        id = api->draw_surface(vector<vector<Point3D>> {{
-        
-	    drawNS::Point3D(-MAX,-MAX, MAX), drawNS::Point3D(MAX,-MAX,MAX), drawNS::Point3D(MAX,MAX,MAX)
-	    },{
-	    drawNS::Point3D(-MAX,-MAX,MAX), drawNS::Point3D(-MAX,MAX,MAX), drawNS::Point3D(MAX,MAX,MAX)       
-        }}
-        , "blue");
-        api->redraw();
+    obiekt_id = gnuplot->draw_surface(vector<vector<Point3D>>{{
+    drawNS::Point3D(-100,-100,100), drawNS::Point3D(-100,100,100)
+      },{
+    drawNS::Point3D(-80,-100,80), drawNS::Point3D(-80,100,80)
+      },{
+    drawNS::Point3D(-80,-100,100), drawNS::Point3D(-80,100,100)
+      },{
+    drawNS::Point3D(-60,-100,80), drawNS::Point3D(-60,100,80)
+      },{
+    drawNS::Point3D(-60,-100,100), drawNS::Point3D(-60,100,100)
+      },{
+    drawNS::Point3D(-40,-100,80), drawNS::Point3D(-40,100,80)
+      },{
+    drawNS::Point3D(-40,-100,100), drawNS::Point3D(-40,100,100)
+      },{
+    drawNS::Point3D(-20,-100,80), drawNS::Point3D(-20,100,80)
+      },{
+    drawNS::Point3D(-20,-100,100), drawNS::Point3D(-20,100,100)
+      },{
+    drawNS::Point3D(-0,-100,80), drawNS::Point3D(-0,100,80)
+      },{
+    drawNS::Point3D(-0,-100,100), drawNS::Point3D(-0,100,100)
+      },{
+    drawNS::Point3D(0,-100,80), drawNS::Point3D(0,100,80)
+      },{
+    drawNS::Point3D(20,-100,100), drawNS::Point3D(20,100,100)
+      },{
+    drawNS::Point3D(20,-100,80), drawNS::Point3D(20,100,80)
+      },{
+    drawNS::Point3D(40,-100,100), drawNS::Point3D(40,100,100)
+      },{
+    drawNS::Point3D(40,-100,80), drawNS::Point3D(40,100,80)
+      },{
+    drawNS::Point3D(60,-100,100), drawNS::Point3D(60,100,100)
+      },{
+    drawNS::Point3D(60,-100,80), drawNS::Point3D(60,100,80)
+      },{
+    drawNS::Point3D(80,-100,100), drawNS::Point3D(80,100,100)
+      },{
+    drawNS::Point3D(80,-100,80), drawNS::Point3D(80,100,80)
+      },{
+    drawNS::Point3D(100,-100,100), drawNS::Point3D(100,100,100)
+      }}, kolor);
     }
 };
 

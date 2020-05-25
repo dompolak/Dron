@@ -1,51 +1,49 @@
 #include "dron.hh"
+#include "dno.hh"
 #include "tafla.hh"
-#include "podloze.hh"
-#include "macierz_obrotu.hh"
-#include "Dr3D_gnuplot_api.hh"
 
-using drawNS::APIGnuPlot3D;
-using drawNS::Point3D;
 using std::cin;
 using std::cout;
 using std::endl;
-using std::vector;
-using wektor3D = Wektor<double,3>;
 
 void wait4key();
 void menu_wyboru();
 
+
 int main()
 {
 
-int max(10);
+int max(100);
 std::shared_ptr<drawNS::Draw3DAPI> api (new APIGnuPlot3D(-max,max,-max,max,-max,max,1000));
-std::ifstream plik_dron, wirnik;
-wektor3D sr_dron;
-wektor3D tab[8], tab1[12];
-smacierz x_dron;
-char wybor;
+std::ifstream plik_dron;
+Wektor3D sr_dron, sr1, sr2;
+Wektor3D tab[8], tab1[12], tab2[12];
+macierz3D x_dron;
 
-plik_dron.open("dron.txt");
+plik_dron.open("test.txt");
 
+  plik_dron >> x_dron;
 for(int i(0); i <= 8; i++)
 {
-    if(i < 8)
-    {
       plik_dron >> tab[i];
-    }else
-    {
-      plik_dron >> x_dron;
-      plik_dron >> sr_dron;
-    }
 }
+    plik_dron >> sr_dron;
 
-tafla T(api);
-podloze P(api);
-P.rysuj();
-T.rysuj();
-double kat(0), odleglosc(0);
+for(int i(0); i <= 12; i++)
+{
+      plik_dron >> tab1[i];
+}
+  plik_dron >> sr1;
 
+dron Dron(api, "purple", x_dron, sr_dron, sr1, sr2, tab, tab1, tab2);
+dno Dno(api);
+tafla Tafla(api);
+Tafla.rysuj();
+Dno.rysuj();
+Dron.rysuj();
+
+char wybor;
+double odleglosc, kat;
 while(wybor != 'k')
 {
   menu_wyboru();
@@ -57,12 +55,13 @@ while(wybor != 'k')
     case 'r': 
     cout << "Podaj odleglosc, kat:" << endl;
     cin >> odleglosc >> kat;
+    Dron.przesun(odleglosc, kat);
     break;
 
-    case 'o': // zmiana orientacji
+    case 'o': 
     cout << "Podaj kat:" << endl;
     cin >> kat;
-    //tmp.obroc(kat);
+    Dron.obroc(kat);
     break;
 
     case 'k':
@@ -75,9 +74,8 @@ while(wybor != 'k')
   }
 }
 
+
 }
-
-
 
 void wait4key() 
 {

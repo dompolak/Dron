@@ -2,7 +2,8 @@
 #define _MACIERZ_OBROTU_HH
 
 #include "macierz.hh"
-using smacierz = macierz<double, 3>;
+using macierz3D = macierz<double, 3>;
+using Wektor3D = Wektor<double, 3>;
 
 //wokol jakiej osi ma sie obrocic obiekt
 enum wymiar{os_x, os_y, os_z};
@@ -40,7 +41,8 @@ public:
             break;
         }
     }
-    macierz_ob(const smacierz & M) : smacierz(M) 
+    
+    macierz_ob(const macierz3D & M) : macierz3D(M) 
     {
         if(abs((*this).wyznacznik() - 1) > FLT_EPSILON)
         {std::cerr << "To nie jest macierz obrotu" << std::endl; exit(1); }
@@ -54,6 +56,7 @@ public:
         if(abs(M[1]*M[2]) > FLT_EPSILON)
         {std::cerr << "To nie jest macierz obrotu" << std::endl; exit(1); }
     }
+
     ~macierz_ob() {}
 };
 #endif
