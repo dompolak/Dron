@@ -31,6 +31,10 @@ public:
     *  \param kat - kat o jaki ma sie obrocic obiekt
     */  
     virtual void przesun(const double &, const double &) = 0;
+        /*!
+    *   \brief metoda obracaja wokol osi y
+    */
+    virtual void obroc_os_y(const double );
 };
 
 #endif

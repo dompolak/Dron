@@ -50,10 +50,9 @@ public:
             tmp[6].punkt(),tmp[7].punkt(),tmp[8].punkt(),tmp[9].punkt(), tmp[10].punkt(), tmp[11].punkt()
         }}, kolor);
         
-        id_linie[0] = gnuplot->draw_line(tmp[0].punkt(), tmp[3].punkt(), "red");
-        id_linie[1] = gnuplot->draw_line(tmp[5].punkt(), tmp[2].punkt(), "red");
-        id_linie[2] = gnuplot->draw_line(tmp[4].punkt(), tmp[1].punkt(), "red");
-        gnuplot->redraw();
+        id_linie[0] = gnuplot->draw_line(tmp[0].punkt(), tmp[3].punkt(), kolor);
+        id_linie[1] = gnuplot->draw_line(tmp[5].punkt(), tmp[2].punkt(), kolor);
+        id_linie[2] = gnuplot->draw_line(tmp[4].punkt(), tmp[1].punkt(), kolor);
     }
     
     /*!
