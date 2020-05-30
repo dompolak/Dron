@@ -37,14 +37,14 @@ public:
 
     /*!
     *  \brief metoda przesuwajaca graniastoslup o podany wektor
-    *  \param we - wektor o jaki ma sie przesunac bry;a
+    *  \param we - wektor o jaki ma sie przesunac bryla
     */
     void przemiesc(const Wektor3D &we)
     {
         srodek_bryly = srodek_bryly + we;
         
         for(int i(0); i < 12; i++)
-        { wierzcholki[i] = wierzcholki[i] + we; }
+        { wierzcholki[i] = we + wierzcholki[i]; }
         
         usun_obiekt();
         rysuj();

@@ -24,6 +24,13 @@ public:
     *  \brief destruktor
     */ 
     virtual ~interfejs_drona() {}
+
+    /*!
+    *  \brief metoda odpowiedzialna za przesuwanie calego obiektu
+    *  \param odleglosc - o ile ma sie przesunac obiekt
+    *  \param kat - kat o jaki ma sie obrocic obiekt
+    */  
+    virtual void przesun(const double &, const double &) = 0;
 };
 
 #endif

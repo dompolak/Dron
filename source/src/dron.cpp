@@ -2,18 +2,28 @@
 
 void dron::przesun(const double &odleglosc, const double &kat)
 {
-        Wektor3D przesuniecie(odleglosc,0,0);
-        //macierz_ob obrot(os_y, kat);
-        orientacja = macierz_ob(os_y, kat);
+        Wektor3D przesuniecie(odleglosc, 0, 0);
+        double kat_rad = M_PI * kat / 180;
+        przesuniecie[0] = cos(kat_rad) * odleglosc;
+        przesuniecie[1] = 0.0;
+        przesuniecie[2] = sin(kat_rad) * odleglosc;
+        //obroc_os_y(kat);
+        srodek_bryly = srodek_bryly + orientacja * przesuniecie;
         prostopadloscian::przemiesc(przesuniecie);
-        lewy_wirnik.przemiesc(przesuniecie);
-        prawy_wirnik.przemiesc(przesuniecie);
         lewy_wirnik.obrot(15);
         prawy_wirnik.obrot(15);
         usun_obiekt();
         rysuj();
 
     
+}
+
+void dron::obroc_os_y(const double kat)
+{
+    macierz_ob tmp(os_y, kat);
+    orientacja = macierz_ob(orientacja * tmp);
+    usun_obiekt();
+    rysuj();
 }
 
 void dron::rysuj()
@@ -31,7 +41,7 @@ void dron::usun_obiekt()
 }
 
 void dron::obroc(const double kat)
-{
+{   
     prostopadloscian::obroc(kat);
     lewy_wirnik.obroc(kat);
     prawy_wirnik.obroc(kat);

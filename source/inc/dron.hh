@@ -54,7 +54,10 @@ public:
     *  \brief metoda wymazujaca caly obiekt
     */
     void usun_obiekt();
-    
+    /*!
+    *   \brief metoda obracaja wokol osi y
+    */
+    void obroc_os_y(const double );
 
 
 };

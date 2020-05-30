@@ -23,13 +23,13 @@ macierz3D x_dron;
 plik_dron.open("test.txt");
 
   plik_dron >> x_dron;
-for(int i(0); i <= 8; i++)
+for(int i(0); i < 8; i++)
 {
       plik_dron >> tab[i];
 }
     plik_dron >> sr_dron;
 
-for(int i(0); i <= 12; i++)
+for(int i(0); i < 12; i++)
 {
       plik_dron >> tab1[i];
 }

@@ -8,7 +8,8 @@
 */
 class wirnik : public graniastoslup
 {
-
+    macierz_ob macierz_obrot;
+    int id_linie[3];
 public:
     /*!
     *  \brief konstruktor
@@ -19,7 +20,8 @@ public:
     *  \param tablica - tablica 12 wektorow reprezentujaca wierzcholki 
     */
     wirnik(shared_ptr<Draw3DAPI> wsk, string K, macierz_ob M, Wektor3D S, Wektor3D tablica[])
-    : graniastoslup(wsk, K, M, S, tablica) {}
+    : graniastoslup(wsk, K, M, S, tablica)
+    , macierz_obrot(os_x, 0) {}
     /*!
     *  \brief destruktor
     */
@@ -37,7 +39,8 @@ public:
         for(int i(0); i < 12; i++)
         { 
             //tmp[i] = we + ob * (orientacja * (m_pom * wierzcholki[i]));
-            tmp[i] = we + orientacja * (srodek_bryly + m_pom * wierzcholki[i]);
+            tmp[i] = we + orientacja * (macierz_obrot *(m_pom * wierzcholki[i]));
+            //tmp[i] = we + orientacja * (srodek_bryly + m_pom * wierzcholki[i]);
         }
 
         obiekt_id = gnuplot->draw_polyhedron(vector<vector<Point3D>>
@@ -46,6 +49,11 @@ public:
         },{ 
             tmp[6].punkt(),tmp[7].punkt(),tmp[8].punkt(),tmp[9].punkt(), tmp[10].punkt(), tmp[11].punkt()
         }}, kolor);
+        
+        id_linie[0] = gnuplot->draw_line(tmp[0].punkt(), tmp[3].punkt(), "red");
+        id_linie[1] = gnuplot->draw_line(tmp[5].punkt(), tmp[2].punkt(), "red");
+        id_linie[2] = gnuplot->draw_line(tmp[4].punkt(), tmp[1].punkt(), "red");
+        gnuplot->redraw();
     }
     
     /*!
@@ -54,11 +62,17 @@ public:
     */
     void obrot(const double kat) 
     {
-       orientacja = macierz_ob(os_x, kat);
+       macierz_obrot = macierz_ob(os_x, kat);
        usun_obiekt();
     }
     
-    
+    void usun_obiekt()
+    {
+        gnuplot->erase_shape(obiekt_id);
+        gnuplot->erase_shape(id_linie[0]);
+        gnuplot->erase_shape(id_linie[1]);
+        gnuplot->erase_shape(id_linie[2]);
+    }
 };
 
 #endif
