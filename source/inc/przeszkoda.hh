@@ -4,9 +4,11 @@
 #include "inter_drona.hh"
 #include "inter_rysowania.hh"
 
-class przeszkoda : public interfejs_rysowania
-{
-    virtual bool czy_kolizcja(const interfejs_drona &) const = 0;
+class przeszkoda
+{   
+public:
+    virtual bool czy_kolizja(const interfejs_drona &) = 0;
+    //virtual void rysuj() = 0;
 };
 
 #endif

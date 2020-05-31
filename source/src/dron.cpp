@@ -2,7 +2,8 @@
 
 void dron::przesun(const double &odleglosc, const double &kat)
 {
-        Wektor3D przesuniecie(odleglosc, 0, 0);
+        //Wektor3D przesuniecie(odleglosc, 0, 0);
+        Wektor3D przesuniecie(0,0,0);
         double kat_rad = M_PI * kat / 180;
         przesuniecie[0] = cos(kat_rad) * odleglosc;
         przesuniecie[1] = 0.0;
@@ -13,8 +14,7 @@ void dron::przesun(const double &odleglosc, const double &kat)
         lewy_wirnik.obrot(15);
         prawy_wirnik.obrot(15);
         usun_obiekt();
-        rysuj();
-
+        //rysuj();
     
 }
 
@@ -38,15 +38,17 @@ void dron::usun_obiekt()
     prostopadloscian::usun_obiekt();
     lewy_wirnik.usun_obiekt();
     prawy_wirnik.usun_obiekt();
+    gnuplot->redraw();
 }
 
 void dron::obroc(const double kat)
 {   
+
     prostopadloscian::obroc(kat);
     lewy_wirnik.obroc(kat);
     prawy_wirnik.obroc(kat);
     lewy_wirnik.obrot(15);
     prawy_wirnik.obrot(15);
     usun_obiekt();
-    rysuj();
+    //rysuj();
 }

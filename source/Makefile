@@ -17,27 +17,20 @@ obj/wektor_macierz.o: src/wektor_macierz.cpp src/wektor.cpp src/macierz.cpp\
 	inc/macierz.hh inc/wektor.hh
 	g++ ${CPPFLAGS} -o obj/wektor_macierz.o src/wektor_macierz.cpp
 
-obj/dron.o: src/dron.cpp inc/dron.hh inc/wirnik
+obj/dron.o: src/dron.cpp inc/dron.hh inc/inter_rysowania.hh inc/bryla.hh inc/prostopadloscian.hh inc/wirnik.hh inc/graniastoslup6.hh inc/macierz_obrotu.hh\
+			inc/inter_drona.hh inc/przeszkoda.hh
 	g++ ${CPPFLAGS} -o obj/dron.o src/dron.cpp
 
-obj/main.o: src/main.cpp inc/dron.hh inc/dno.hh
+obj/main.o: src/main.cpp inc/dron.hh inc/dno.hh inc/tafla.hh inc/dron.hh 
 	g++ ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 inc/Dr3D_gnuplot_api.hh: inc/Draw3D_api_interface.hh
 	touch inc/Dr3D_gnuplot_api.hh
 
-inc/dron.hh: inc/inter_rysowania.hh
-	touch inc/bryla.hh inc/prostopadloscian.hh inc/inter_drona.hh \
-	inc/dron.hh
-
-inc/wirnik: inc/inter_rysowania.hh
-	touch inc/bryla.hh inc/graniastoslup6.hh inc/wirnik.hh
-
 inc/dno: inc/inter_rysowania.hh	
-	touch inc/powierzchnia.hh inc/dno.hh
+	touch inc/powierzchnia.hh inc/przeszkoda.hh inc/dno.hh 
 
 inc/tafla: inc/inter_rysowania.hh	
-	touch inc/powierzchnia.hh inc/tafla.hh
-
+	touch inc/powierzchnia.hh inc/przeszkoda.hh inc/tafla.hh 
 clear:
 	rm dron.out obj/*.o

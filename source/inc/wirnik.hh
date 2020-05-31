@@ -53,6 +53,7 @@ public:
         id_linie[0] = gnuplot->draw_line(tmp[0].punkt(), tmp[3].punkt(), kolor);
         id_linie[1] = gnuplot->draw_line(tmp[5].punkt(), tmp[2].punkt(), kolor);
         id_linie[2] = gnuplot->draw_line(tmp[4].punkt(), tmp[1].punkt(), kolor);
+        gnuplot->redraw();
     }
     
     /*!
@@ -71,6 +72,7 @@ public:
         gnuplot->erase_shape(id_linie[0]);
         gnuplot->erase_shape(id_linie[1]);
         gnuplot->erase_shape(id_linie[2]);
+        gnuplot->redraw();
     }
 };
 

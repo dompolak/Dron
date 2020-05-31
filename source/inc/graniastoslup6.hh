@@ -65,6 +65,7 @@ public:
         },{ 
             tmp[6].punkt(),tmp[7].punkt(),tmp[8].punkt(),tmp[9].punkt(), tmp[10].punkt(), tmp[11].punkt()
         }}, kolor);
+        gnuplot->redraw();
     }
 };
 #endif

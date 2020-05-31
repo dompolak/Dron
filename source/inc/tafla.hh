@@ -2,11 +2,12 @@
 #define _TAFLA_HH
 
 #include "powierzchnia.hh"
+#include "przeszkoda.hh"
 
 /*!
 *  \brief klasa reprezentujaca tafle
 */
-class tafla : public powierzchnia
+class tafla : public powierzchnia, public przeszkoda
 {
 
 public: 
@@ -65,6 +66,20 @@ public:
     drawNS::Point3D(100,-100,100), drawNS::Point3D(100,100,100)
       }}, kolor);
     }
+
+  bool czy_kolizja(const interfejs_drona & Dron)
+	{
+    Wektor3D tmp;
+		tmp = Dron.get_srodek();
+
+		if(tmp[2] > (80 - 0.7 * Dron.get_promien()))
+		{	
+			std::cerr << "Ruch wstrzymany kolizja z tafla" << std::endl;
+			return true;
+		}
+		
+		return false;
+	}
 };
 
 #endif

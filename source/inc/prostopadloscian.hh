@@ -49,6 +49,7 @@ public:
         },{ 
             tmp[4].punkt(),tmp[5].punkt(),tmp[6].punkt(),tmp[7].punkt()
         }}, kolor);
+        gnuplot->redraw();
     }
 
     /*!
@@ -63,7 +64,7 @@ public:
         { wierzcholki[i] = wierzcholki[i] + we; }
 
         usun_obiekt();
-        rysuj();
+        //rysuj();
 
 
     }
