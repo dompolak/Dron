@@ -11,10 +11,24 @@ public:
     : prostopadloscian(wsk, K, M, S, tablica) {}
 
     void rysuj() { prostopadloscian::rysuj(); }
-    bool czy_kolizja(const interfejs_drona & Dron)
-    {
 
+    bool czy_kolizja(const interfejs_drona & Dron)
+    {   
+        if((Dron.get_srodek() - srodek_bryly).dlugosc() / 2 < 0.4 * Dron.get_promien())
+        {
+            std::cerr << "Kolzija z pudelkiem" << std::endl;
+            return true;
+        }
+
+        return false;
     }
 
+    void obroc_y(const double kat)
+    {
+        macierz_ob tmp(os_y, kat);
+        orientacja = macierz_ob(orientacja * tmp);
+        usun_obiekt();
+        rysuj();
+    }
 };
 #endif

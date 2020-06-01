@@ -65,7 +65,7 @@ public:
     void obroc_os_y(const double );
     double get_promien()const { return promien; }
     Wektor3D get_srodek()const { return srodek_bryly; }
-    bool czy_kolizja(const interfejs_drona & Dron)  {}
+    bool czy_kolizja(const interfejs_drona & Dron); 
 
 
 };

@@ -21,7 +21,7 @@ obj/dron.o: src/dron.cpp inc/dron.hh inc/inter_rysowania.hh inc/bryla.hh inc/pro
 			inc/inter_drona.hh inc/przeszkoda.hh
 	g++ ${CPPFLAGS} -o obj/dron.o src/dron.cpp
 
-obj/main.o: src/main.cpp inc/dron.hh inc/dno.hh inc/tafla.hh inc/dron.hh 
+obj/main.o: src/main.cpp inc/dron.hh inc/dno.hh inc/tafla.hh inc/dron.hh inc/przeszkoda_prostopadloscian.hh inc/przeszkoda.hh
 	g++ ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 inc/Dr3D_gnuplot_api.hh: inc/Draw3D_api_interface.hh
