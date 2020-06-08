@@ -56,7 +56,7 @@ void dron::obroc(const double kat)
 
 bool dron::czy_kolizja(const interfejs_drona & Dron)
 {   
-    if((srodek_bryly - Dron.get_srodek()).dlugosc() < 1.1 * Dron.get_promien())
+    if((srodek_bryly - Dron.get_srodek()).dlugosc() < Dron.get_promien())
     { 
         std::cerr << "Kolzija z dronem" << std::endl;
         return true;
