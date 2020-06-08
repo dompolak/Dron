@@ -8,7 +8,7 @@ class przeszkoda
 {   
 public:
     virtual bool czy_kolizja(const interfejs_drona &) = 0;
-    //virtual void rysuj() = 0;
+    virtual void rysuj() = 0;
 };
 
 #endif

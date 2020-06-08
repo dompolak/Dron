@@ -14,7 +14,7 @@ public:
 
     bool czy_kolizja(const interfejs_drona & Dron)
     {   
-        if((Dron.get_srodek() - srodek_bryly).dlugosc() / 2 < 0.4 * Dron.get_promien())
+        if((Dron.get_srodek() - srodek_bryly).dlugosc() < 0.4 * Dron.get_promien())
         {
             std::cerr << "Kolzija z pudelkiem" << std::endl;
             return true;

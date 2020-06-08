@@ -5,10 +5,10 @@ CPPFLAGS = -c -g -Iinc -Wall -pedantic -std=c++17
 __start__: dron.out
 	./dron.out
 
-dron.out: obj/Dr3D_gnuplot_api.o obj/wektor_macierz.o obj/dron.o \
-	obj/main.o
+dron.out: obj/Dr3D_gnuplot_api.o obj/wektor_macierz.o obj/dron.o\
+	obj/main.o obj/bryla.o
 	g++ -o dron.out obj/wektor_macierz.o obj/Dr3D_gnuplot_api.o\
-	 obj/main.o obj/dron.o -lpthread
+	 obj/main.o obj/dron.o obj/bryla.o -lpthread
 
 obj/Dr3D_gnuplot_api.o: src/Dr3D_gnuplot_api.cpp inc/Dr3D_gnuplot_api.hh
 	g++ ${CPPFLAGS} -o obj/Dr3D_gnuplot_api.o src/Dr3D_gnuplot_api.cpp
@@ -23,6 +23,9 @@ obj/dron.o: src/dron.cpp inc/dron.hh inc/inter_rysowania.hh inc/bryla.hh inc/pro
 
 obj/main.o: src/main.cpp inc/dron.hh inc/dno.hh inc/tafla.hh inc/dron.hh inc/przeszkoda_prostopadloscian.hh inc/przeszkoda.hh
 	g++ ${CPPFLAGS} -o obj/main.o src/main.cpp
+
+obj/bryla.o: src/bryla.cpp inc/bryla.hh inc/macierz_obrotu.hh inc/inter_rysowania.hh 
+	g++ ${CPPFLAGS} -o obj/bryla.o src/bryla.cpp
 
 inc/Dr3D_gnuplot_api.hh: inc/Draw3D_api_interface.hh
 	touch inc/Dr3D_gnuplot_api.hh

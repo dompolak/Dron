@@ -1,12 +1,39 @@
 #include "wektor.hh"
 
 template<class T, int size>
+int Wektor<T, size>::aktualna_liczba_wektorow = 0;
+
+template<class T, int size>
+int Wektor<T, size>::calkowita_liczba_wektorow = 0;
+
+template<class T, int size>
 Wektor<T, size>::Wektor(T TAB[])
 {
     for(int i(0); i < size; i++)
     {
         tab[i] = TAB[i];
     }
+
+    ++aktualna_liczba_wektorow;
+    ++calkowita_liczba_wektorow;
+}
+
+template<class T, int size>
+Wektor<T, size>::Wektor(double x, double y, double z)
+{
+    tab[0] = x;
+    tab[1] = y;
+    tab[2] = z;
+    ++aktualna_liczba_wektorow;
+    ++calkowita_liczba_wektorow;
+}
+template<class T, int size>
+Wektor<T, size>::Wektor(const Wektor & We)
+{ 
+    for(int i(0); i < size; i++)
+    { tab[i] = We[i]; }
+    ++aktualna_liczba_wektorow; 
+    ++calkowita_liczba_wektorow; 
 }
 
 template<class T, int size>

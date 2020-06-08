@@ -40,8 +40,14 @@ public:
     void rysuj()
     {
         Wektor3D tmp[8];
+        //std::cerr << "Srodek bryly: " << srodek_bryly << std::endl;
         for(int i(0); i < 8; i++)
         { tmp[i] = srodek_bryly + orientacja * wierzcholki[i]; }
+        /*std::cerr << "Prostopadloscian" << std::endl;
+        for(int i(0); i < 8; i++)
+        {
+            std::cerr << wierzcholki[i] << std::endl;
+        }*/
 
         obiekt_id = gnuplot->draw_polyhedron(vector<vector<Point3D>>
         {{
@@ -50,6 +56,8 @@ public:
             tmp[4].punkt(),tmp[5].punkt(),tmp[6].punkt(),tmp[7].punkt()
         }}, kolor);
         gnuplot->redraw();
+
+
     }
 
     /*!

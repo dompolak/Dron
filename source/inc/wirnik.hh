@@ -38,10 +38,16 @@ public:
         Wektor3D tmp[12];
         for(int i(0); i < 12; i++)
         { 
-            //tmp[i] = we + ob * (orientacja * (m_pom * wierzcholki[i]));
+            //tmp[i] = we + ob * (orientacja * (macierz_obrot * (m_pom * wierzcholki[i])));
             tmp[i] = we + orientacja * (macierz_obrot *(m_pom * wierzcholki[i]));
-            //tmp[i] = we + orientacja * (srodek_bryly + m_pom * wierzcholki[i]);
+            //tmp[i] = we + orientacja * (srodek_bryly + m_pom * wierzcholki[i]));
         }
+        /*std::cerr << "Srodek wirnik" << srodek_bryly << std::endl;
+        std::cerr << "wirnik" << std::endl;
+        for(int i(0); i < 12; i++)
+        {
+            std::cerr << wierzcholki[i] << std::endl;
+        }*/
 
         obiekt_id = gnuplot->draw_polyhedron(vector<vector<Point3D>>
         {{
@@ -62,7 +68,7 @@ public:
     */
     void obrot(const double kat) 
     {
-       macierz_obrot = macierz_ob(os_x, kat);
+       macierz_obrot = macierz_obrot * macierz_ob(os_x, kat);
        usun_obiekt();
     }
     

@@ -31,6 +31,7 @@ void dron::rysuj()
     prostopadloscian::rysuj();
     lewy_wirnik.rysuj(srodek_bryly + orientacja * ((wierzcholki[3] + wierzcholki[7]) / 2), orientacja);
     prawy_wirnik.rysuj(srodek_bryly + orientacja * ((wierzcholki[0] + wierzcholki[4]) / 2), orientacja);
+    //std::cerr << "Dron "<< kolor << std::endl;
 }
 
 void dron::usun_obiekt()
@@ -54,8 +55,8 @@ void dron::obroc(const double kat)
 }
 
 bool dron::czy_kolizja(const interfejs_drona & Dron)
-{
-    if((srodek_bryly - Dron.get_srodek()).dlugosc() < promien)
+{   
+    if((srodek_bryly - Dron.get_srodek()).dlugosc() < 1.1 * Dron.get_promien())
     { 
         std::cerr << "Kolzija z dronem" << std::endl;
         return true;

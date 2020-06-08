@@ -24,6 +24,9 @@ protected:
     *  \brief zmienna przechowujaca punkt srodkowy bryly
     */
     Wektor3D srodek_bryly;
+    
+    static int aktualna_liczba_bryl;
+    static int calkowita_liczba_bryl;
 
 public:
     /*!
@@ -36,7 +39,11 @@ public:
     bryla(shared_ptr<Draw3DAPI> wsk, string K, macierz_ob M, Wektor3D S) 
     : interfejs_rysowania(wsk, K)
     , orientacja(M)
-    , srodek_bryly(S) {}
+    , srodek_bryly(S) 
+    {
+        ++aktualna_liczba_bryl;
+        ++calkowita_liczba_bryl;
+    }
 
     /*!
     *  \brief konstruktor
@@ -46,12 +53,19 @@ public:
     */
     bryla(shared_ptr<Draw3DAPI> wsk, string K, macierz_ob M) 
     : interfejs_rysowania(wsk, K)
-    , orientacja(M) {}
+    , orientacja(M) 
+    {
+        ++aktualna_liczba_bryl;
+        ++calkowita_liczba_bryl;
+    }
 
     /*!
     *  \brief destruktor
     */
-    virtual ~bryla() {}
+    virtual ~bryla() 
+    {
+        --aktualna_liczba_bryl;
+    }
 
     /*!
     *  \brief metoda do zmiany wspolrzednych srodka bryly
@@ -88,6 +102,10 @@ public:
         rysuj();
     }
 
-};  
+    static int get_calkowita_liczba_bryl() { return calkowita_liczba_bryl; }
+    static int get_aktualna_liczba_bryl() {return aktualna_liczba_bryl; }
+
+}; 
+
 
 #endif
